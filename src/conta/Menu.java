@@ -1,21 +1,30 @@
 package conta;
 
 import java.util.Scanner;
+import conta.model.Conta;
 import conta.util.Cores; 
 
 public class Menu {
 
 	public static void main(String[] args) {
+		// Foi instanciado o Objeto c1, da Classe Conta, através do Método Construtor. Para chamar o Método Construtor, foi utilizada a palavra reservada new.
+		// Teste da Classe Conta 
+				Conta c1 = new Conta(1, 123, 1, "Adriana", 10000.0f);
+				c1.visualizar(); // O Objeto c1, da Classe Conta, chama o Método visualizar(), que exibirá no console todos os dados do Objeto.
+				c1.sacar(12000.0f);
+				c1.visualizar();
+				c1.depositar(5000.0f);
+				c1.visualizar();
 
 		Scanner leia = new Scanner(System.in);
 
 		int opcao;
 
 		while (true) {
-			// true pois ira ficar em loop infinito até que a opção 9 seja digitada. 
+			// true, pois ira ficar em loop infinito até que a opção 9 seja digitada. 
 
 			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND 
-					+ " *****************************************************");
+					+ "*****************************************************");
 			System.out.println("                                                     ");
 			System.out.println("                BANCO DO BRAZIL COM Z                ");
 			System.out.println("                                                     ");
