@@ -1,6 +1,6 @@
 package conta.model;
 
-public class Conta {
+public abstract class Conta {
 	// criacao dos atributos da classe conta. São private para implementar o encapsulameto(métodos get e set)
 	private int numero;
 	private int agencia;

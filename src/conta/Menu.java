@@ -1,5 +1,7 @@
 package conta;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import conta.model.Conta;
 import conta.util.Cores;
@@ -8,17 +10,21 @@ import conta.model.ContaPoupança;
 
 public class Menu {
 
+	
+
 	public static void main(String[] args) {
-		// Foi instanciado o Objeto c1, da Classe Conta, através do Método Construtor.
-		// Para chamar o Método Construtor, foi utilizada a palavra reservada new.
-		// Teste da Classe Conta
-		Conta c1 = new Conta(1, 123, 1, "Adriana", 10000.0f);
-		c1.visualizar(); // O Objeto c1, da Classe Conta, chama o Método visualizar(), que exibirá no
-							// console todos os dados do Objeto.
-		c1.sacar(12000.0f);
-		c1.visualizar();
-		c1.depositar(5000.0f);
-		c1.visualizar();
+		
+		Scanner leia = new Scanner(System.in);
+		int opcao;
+
+		/*
+		 * Foi instanciado o Objeto c1, da Classe Conta, através do Método Construtor.
+		 * // Para chamar o Método Construtor, foi utilizada a palavra reservada new. //
+		 * Teste da Classe Conta Conta c1 = new Conta(1, 123, 1, "Adriana", 10000.0f);
+		 * c1.visualizar(); // O Objeto c1, da Classe Conta, chama o Método
+		 * visualizar(), que exibirá no // console todos os dados do Objeto.
+		 * c1.sacar(12000.0f); c1.visualizar(); c1.depositar(5000.0f); c1.visualizar();
+		 */
 
 		// Teste da Classe Conta Corrente
 		ContaCorrente cc1 = new ContaCorrente(2, 123, 1, "Mariana", 15000.0f, 1000.0f);
@@ -35,10 +41,6 @@ public class Menu {
 		cp1.visualizar();
 		cp1.depositar(5000.0f);
 		cp1.visualizar();
-
-		Scanner leia = new Scanner(System.in);
-
-		int opcao;
 
 		while (true) {
 			// true, pois ira ficar em loop infinito até que a opção 9 seja digitada.
@@ -64,7 +66,13 @@ public class Menu {
 			System.out.println("Entre com a opção desejada:                          ");
 			System.out.println("                                                     " + Cores.TEXT_RESET);
 
-			opcao = leia.nextInt();
+			try { // usada para capturar eventuais erros de digitaçao
+				opcao = leia.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Digite valores inteiros!");
+				leia.nextLine();
+				opcao = 0;
+			}
 
 			if (opcao == 9) {
 				System.out.println(Cores.TEXT_WHITE_BOLD + "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
@@ -77,37 +85,46 @@ public class Menu {
 			case 1:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Criar Conta\n\n");
 
+				keyPress();
 				break;
 			case 2:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Listar todas as Contas\n\n");
 
+				keyPress();
 				break;
 			case 3:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Consultar dados da Conta - por número\n\n");
 
+				keyPress();
 				break;
 			case 4:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Atualizar dados da Conta\n\n");
 
+				keyPress();
 				break;
 			case 5:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Apagar a Conta\n\n");
 
+				keyPress();
 				break;
 			case 6:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Saque\n\n");
 
+				keyPress();
 				break;
 			case 7:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Depósito\n\n");
 
+				keyPress();
 				break;
 			case 8:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Transferência entre Contas\n\n");
 
+				keyPress();
 				break;
 			default:
 				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n" + Cores.TEXT_RESET);
+				keyPress();
 				break;
 			}
 		}
@@ -119,5 +136,17 @@ public class Menu {
 		System.out.println("Jaqueline Paula - jaquemarques.santos@gmail.com");
 		System.out.println("https://github.com/JaquePaula");
 		System.out.println("*********************************************************");
+	}
+
+// Com o Método keyPress(), o Menu será recarregado somente depois de pressionar a tecla enter.
+	public static void keyPress() {
+		try {
+			System.out.println(Cores.TEXT_RESET + "\n\nPressione Enter para Continuar...");
+			System.in.read(); //indica a leitura de um dispositivo de entrada padrão (teclado)
+
+		} catch (IOException e) {
+
+			System.out.println("Você pressionou uma tecla diferente de enter!");
+		}
 	}
 }
