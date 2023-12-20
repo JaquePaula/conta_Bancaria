@@ -1,24 +1,30 @@
 package conta.model;
 
 public abstract class Conta {
-	// criacao dos atributos da classe conta. São private para implementar o encapsulameto(métodos get e set)
+	// criacao dos atributos da classe conta. São private para implementar o
+	// encapsulameto(métodos get e set)
 	private int numero;
 	private int agencia;
 	private int tipo;
 	private String titular;
 	private float saldo;
- // contrutor com mesmo nome da classe gerado por meio do: source > generate contructor using fields
+
+	// contrutor com mesmo nome da classe gerado por meio do: source > generate
+	// contructor using fields
 	public Conta(int numero, int agencia, int tipo, String titular, float saldo) {
-		this.numero = numero;    // this.numero é o atributo da classe e o numero apos igual é o parametro do metodo construtor, o argumento
+		this.numero = numero; // this.numero é o atributo da classe e o numero apos igual é o parametro do
+								// metodo construtor, o argumento
 		this.agencia = agencia;
 		this.tipo = tipo;
 		this.titular = titular;
 		this.saldo = saldo;
 	}
+
 // criando get e set: source > generate getters and setters. Atributo será retornado através do return 
 	public int getNumero() {
 		return numero;
 	}
+
 // o set é assinado com void, pois o valor sera alterado e nao vai retornar valor. Ele sera o valor atraves do .this
 	public void setNumero(int numero) {
 		this.numero = numero;
@@ -56,6 +62,7 @@ public abstract class Conta {
 		this.saldo = saldo;
 	}
 // criando metodos especificos da classe conta: Sacar
+
 	public boolean sacar(float valor) {
 
 		if (this.getSaldo() < valor) {
@@ -66,12 +73,14 @@ public abstract class Conta {
 		this.setSaldo(this.getSaldo() - valor);
 		return true;
 	}
+
 	// criando metodos especificos da classe conta: depositar
 	public void depositar(float valor) {
 
 		this.setSaldo(this.getSaldo() + valor);
 
 	}
+
 // Método visualizar definido como void(ele não precisa retornar uma confirmação, e sim exibir os dados de um Objeto conta)
 	public void visualizar() {
 
